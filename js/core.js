@@ -10,3 +10,5 @@ function lightweight_cctray_monitor(){
 
     setInterval(markUnreachablePipelines, 10000, cache);
 }
+
+lightweight_cctray_monitor();

@@ -21,7 +21,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL) {
             if (stepName != "") {
                 stepName = stepName + "<br/>"
             }
-            $('#flex-par').append(
+            $('#lightweight-cctray-monitor').append(
                     '<div class="flex-child ' + stateCSS + '">' +
                     '<div class="inner-flex-div">' +
                     '<p class="inner-flex-p">' +
@@ -39,7 +39,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL) {
 }
 
 function addSuccesTextDiv(successText) {
-    $('#flex-par').append('<div id="success-div" class="flex-child healthy">' +
+    $('#lightweight-cctray-monitor').append('<div id="success-div" class="flex-child healthy">' +
     '<div class="inner-flex-div">' +
     '<p class="inner-flex-p">'
     + successText +
@@ -47,7 +47,7 @@ function addSuccesTextDiv(successText) {
 }
 
 function addFailureTextDiv(failureText) {
-    $('#flex-par').append('<div id="success-div" class="flex-child failed">' +
+    $('#lightweight-cctray-monitor').append('<div id="success-div" class="flex-child failed">' +
     '<div class="inner-flex-div">' +
     '<p class="inner-flex-p">'
     + failureText +
@@ -56,7 +56,7 @@ function addFailureTextDiv(failureText) {
 
 function updatePresentation(successText, cache, debug) {
     var cacheCopy = $.extend({}, cache);
-    $('#flex-par').empty();
+    $('#lightweight-cctray-monitor').empty();
     var len = Object.keys(cacheCopy).length;
     if (len == 0) {
         addFailureTextDiv('no states in cache');
@@ -72,7 +72,7 @@ function updatePresentation(successText, cache, debug) {
             ;
         });
     }
-    if ($('#flex-par div').length == 0) {
+    if ($('#lightweight-cctray-monitor div').length == 0) {
         addSuccesTextDiv(successText);
     }
 }
