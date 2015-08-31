@@ -1,6 +1,6 @@
 # Lightweight-CCTray-Monitor
 
-A small JavaScript-Tool to visualize cctray.xml files provided by any continuous integration tool.
+A small JavaScript tool to visualize cctray.xml files provided by any continuous integration tool.
 
 ## Usage
 * clone this repository
