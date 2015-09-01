@@ -16,22 +16,18 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL) {
         if (debug || ((state != 'healthy') && (state != 'unknown'))) {
             var stateAsSpan = '';
             if (debug) {
-                stateAsSpan = '<br/><span style="font-size: x-small;">' + state + '</span>';
+                stateAsSpan = state + '<br/>';
             }
             if (stepName != "") {
-                stepName = stepName + "<br/>"
+                stepName = stepName + "<br/><br/>"
             }
             $('#lightweight-cctray-monitor').append(
                     '<div class="flex-child ' + stateCSS + '">' +
-                    '<div class="inner-flex-div">' +
-                    '<p class="inner-flex-p">' +
                     '<a href="' + guiURL + '" target="_blank">' +
                     stepName +
-                    '<span style="font-size: smaller;">' + pipelineName + '</span>' +
                     stateAsSpan +
+                    pipelineName +
                     '</a>' +
-                    '</p>' +
-                    '</div>' +
                     '</div>'
             );
         }
@@ -39,19 +35,19 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL) {
 }
 
 function addSuccesTextDiv(successText) {
-    $('#lightweight-cctray-monitor').append('<div id="success-div" class="flex-child healthy">' +
-    '<div class="inner-flex-div">' +
-    '<p class="inner-flex-p">'
-    + successText +
-    '</p></div></div>');
+    $('#lightweight-cctray-monitor').append('<div class="flex-child healthy">' +
+    '<span>' +
+    successText +
+    '</span>' +
+    '</div>');
 }
 
 function addFailureTextDiv(failureText) {
-    $('#lightweight-cctray-monitor').append('<div id="success-div" class="flex-child failed">' +
-    '<div class="inner-flex-div">' +
-    '<p class="inner-flex-p">'
-    + failureText +
-    '</p></div></div>');
+    $('#lightweight-cctray-monitor').append('<div class="flex-child failed">' +
+    '<span>' +
+    failureText +
+    '</span>' +
+    '</div>');
 }
 
 function updatePresentation(successText, cache, debug) {
@@ -59,7 +55,7 @@ function updatePresentation(successText, cache, debug) {
     $('#lightweight-cctray-monitor').empty();
     var len = Object.keys(cacheCopy).length;
     if (len == 0) {
-        addFailureTextDiv('no states in cache');
+        addFailureTextDiv('Please add pipelines to config.js');
     } else {
         Object.keys(cacheCopy).forEach(function (key) {
             var cacheEntry = cacheCopy[key];
