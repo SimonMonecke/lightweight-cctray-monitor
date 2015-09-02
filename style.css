@@ -4,7 +4,7 @@ body, html {
 
 body {
     margin: 0;
-    font-size: 16pt;
+    font-family: Arial, Helvetica, sans-serif;
     color: #e5e5e5;
 }
 
@@ -77,16 +77,16 @@ body {
     width: 0;
 }
 
-.inner-flex-div {
-    display: flex;
-    justify-content: center;
+.inner-flex-child {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: table;
 }
 
-.inner-flex-p {
-    max-width: 200px;
-    flex-grow: 1;
-    text-align: center;
-    margin: 5px;
+.inner-inner-flex-child {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 a {

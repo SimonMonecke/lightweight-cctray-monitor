@@ -43,7 +43,7 @@ function updateCache(pipelines, cache, asynCall) {
                     error: function (response) {
                         var cacheEntry = [];
                         cacheEntry['stepName'] = '';
-                        cacheEntry['pipelineName'] = pipeline['displayName'] + '-Pipeline';
+                        cacheEntry['pipelineName'] = pipeline['displayName'];
                         cacheEntry['state'] = 'sick';
                         cacheEntry['visible'] = true;
                         cacheEntry['timestamp'] = Math.floor(Date.now() / 1000);

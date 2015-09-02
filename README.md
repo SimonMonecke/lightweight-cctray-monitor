@@ -9,9 +9,9 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 * open the file lightweight-cctray-monitor.html in your browser
 
 ## TODO
-* scale the font automatically
-* compute the number of cols automatically
-* add a option to ignore steps with a defined prefix
+- [x] scale the font automatically
+- [ ] compute the number of cols automatically
+- [ ] add a option to ignore steps with a defined prefix
 
 ## License
 
