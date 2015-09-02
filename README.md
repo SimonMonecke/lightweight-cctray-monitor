@@ -4,12 +4,13 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 
 ## Usage
 * clone this repository
-* edit the file config.js.example
-* rename this file to config.js
+* edit the file config.json.example
+* rename this file to config.json
 * open the file lightweight-cctray-monitor.html in your browser
 
 ## TODO
 - [x] scale the font automatically
+- [x] replace javascript config with json file
 - [ ] compute the number of cols automatically
 - [ ] add a option to ignore steps with a defined prefix
 
