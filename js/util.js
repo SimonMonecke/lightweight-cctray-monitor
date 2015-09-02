@@ -8,3 +8,19 @@ function getUrlParameter(sParam) {
         }
     }
 }
+
+function readConfig(filename) {
+    var c = null;
+    $.ajax({
+        dataType: "text",
+        url: filename,
+        async: false,
+        success: function(data) {
+            c = $.parseJSON(data);
+        },
+        error: function(data) {
+            console.log("can't get config.json")
+        }
+    });
+    return c;
+}

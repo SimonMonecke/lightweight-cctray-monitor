@@ -1,5 +1,6 @@
 debug = getUrlParameter('debug');
 var cache = [];
+var config = readConfig("config.json");
 
 function lightweight_cctray_monitor(){
     updateCache(config.pipelines, cache, false);
