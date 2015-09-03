@@ -61,7 +61,7 @@ function addFailureTextDiv(failureText) {
     '</div>' +
     '</div>' +
     '</div>');
-    $('#success-div').textfill({innerTag: 'span', maxFontPixels: 0});
+    $('#failure-div').textfill({innerTag: 'span', maxFontPixels: 0});
 }
 
 (function($) {
