@@ -13,7 +13,7 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 - [x] replace javascript config with json file
 - [x] compute the number of cols automatically
 - [x] add a option to ignore steps with a specified prefix
-- [ ] fix typo scaling for smal window size
+- [ ] fix typo scaling for small window size
 - [ ] change colors
 - [ ] fix debug mode
 
