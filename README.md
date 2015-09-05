@@ -9,11 +9,11 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 * open the file lightweight-cctray-monitor.html in your browser
 
 ## TODO
-- [x] scale the font automatically
+- [x] scale font automatically
 - [x] replace javascript config with json file
-- [x] compute the number of cols automatically
+- [x] compute the number of steps in a col automatically
 - [x] add a option to ignore steps with a specified prefix
-- [ ] fix typo scaling for small window size
+- [ ] fix font scaling for small window sizes
 - [ ] change colors
 - [ ] fix debug mode
 
