@@ -15,7 +15,7 @@ function transformState(acitivity, lastBuildStatus) {
     return state;
 }
 
-function updateCache(pipelines, cache, asynCall) {
+function updateCache(pipelines, hiddenPrefix, cache, asynCall) {
     pipelines.forEach(function (pipeline) {
         var invisibleSteps = pipeline['invisibleSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
@@ -34,7 +34,7 @@ function updateCache(pipelines, cache, asynCall) {
                             cacheEntry['stepName'] = name;
                             cacheEntry['pipelineName'] = pipeline['displayName'];
                             cacheEntry['state'] = newState;
-                            cacheEntry['visible'] = ($.inArray(name, invisibleSteps) == -1);
+                            cacheEntry['visible'] = ($.inArray(name, invisibleSteps) == -1) && !(name.startsWith(hiddenPrefix));
                             cacheEntry['guiURL'] = guiURL;
                             cacheEntry['timestamp'] = Math.floor(Date.now() / 1000);
                             cache[keyName] = cacheEntry;

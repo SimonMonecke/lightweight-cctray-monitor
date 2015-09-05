@@ -6,6 +6,7 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #e5e5e5;
+    overflow: hidden;
 }
 
 .healthy {
@@ -67,14 +68,12 @@ body {
 
 .flex-child {
     border-radius: 25px;
-    margin: 5px;
+    margin: 1%;
     flex-grow: 1;
-    min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    width: 0;
 }
 
 .inner-flex-child {

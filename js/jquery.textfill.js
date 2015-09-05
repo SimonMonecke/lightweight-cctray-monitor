@@ -155,7 +155,7 @@
 				var fontSize = Math.floor((minFontPixels + maxFontPixels) / 2);
 				ourText.css('font-size', fontSize);
 
-				if (func.call(ourText) <= (max * 0.95)) {
+				if (func.call(ourText) <= (max * 0.80)) {
 					minFontPixels = fontSize;
 
 					if (func.call(ourText) == max)

@@ -1,5 +1,6 @@
 {
     "successText" : ":D",
+    "autoHiddenPrefix" : "_",
     "pipelines" : [
         {
             "displayName": "Test-Pipeline",

@@ -19,7 +19,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
                 stateAsSpan = state + '<br/>';
             }
             if (stepName != "") {
-                stepName = stepName + "<br/><br/>"
+                stepName = stepName + "<br/>";//<br/>"
             }
             $('#lightweight-cctray-monitor').append(
                     '<div class="flex-child ' + stateCSS + '">' +
@@ -48,7 +48,7 @@ function addSuccesTextDiv(successText) {
     '</div>' +
     '</div>' +
     '</div>');
-    $('#success-div').textfill({innerTag: 'span', maxFontPixels: 0});
+    $('#success-div').textfill({innerTag: 'span', maxFontPixels: 0, minFontPixels: 2});
 }
 
 function addFailureTextDiv(failureText) {
@@ -61,7 +61,7 @@ function addFailureTextDiv(failureText) {
     '</div>' +
     '</div>' +
     '</div>');
-    $('#failure-div').textfill({innerTag: 'span', maxFontPixels: 0});
+    $('#failure-div').textfill({innerTag: 'span', maxFontPixels: 0, minFontPixels: 2});
 }
 
 (function($) {
@@ -105,11 +105,37 @@ function updatePresentation(successText, cache, debug) {
     if ($('#lightweight-cctray-monitor div').length == 0) {
         addSuccesTextDiv(successText);
     }
+    var countOfBoxes = 0;
     for(j = i; j >= 0; j--){
         var width = $('#' + j).width();
         var height = $('#' + j).height();
         if ((width != null) && (height != null)) {
-            $('#' + j).textfill({innerTag: 'a', maxFontPixels: 0});
+            countOfBoxes += 1;
+        }
+    }
+    if(countOfBoxes > 0) {
+        var evenCountOfBoxes = countOfBoxes;
+        if(countOfBoxes % 2 != 0 && countOfBoxes != 1){
+            evenCountOfBoxes += 1;
+        }
+        var closestFactors = getClosestFactors(evenCountOfBoxes);
+        if ($(window).width() > $(window).height()) {
+            closestFactors.reverse();
+        }
+        $('.flex-child').css('min-width', Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) - 2 + '%');
+        $('.flex-child').css('max-width', Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) - 2 + '%');
+        $('.flex-child').css('min-height', Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) - 2 + '%');
+        $('.flex-child').css('max-height', Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) - 2 + '%');
+        if(countOfBoxes % 2 != 0 && countOfBoxes != 1){
+            $('.flex-child').slice(-closestFactors[0]+1).css('min-width', Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) - 2 + '%');
+            $('.flex-child').slice(-closestFactors[0]+1).css('max-width', Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) - 2 + '%');
+        }
+    }
+    for(j = i; j >= 0; j--){
+        var width = $('#' + j).width();
+        var height = $('#' + j).height();
+        if ((width != null) && (height != null)) {
+            $('#' + j).textfill({innerTag: 'a', maxFontPixels: 0, minFontPixels: 2, changeLineHeight: true});
         }
     }
 }
