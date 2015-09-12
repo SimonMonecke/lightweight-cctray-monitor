@@ -10,23 +10,23 @@ body {
 }
 
 .healthy {
-    background-color: #137132;
+    background-color: #95D430;
     color: #e4e4e4;
 }
 
 .failed {
-    background-color: #CC3333;
+    background-color: #E63934;
     color: #e4e4e4;
 }
 
 @keyframes blink-after-failed {
     0% {
         color: white;
-        background-color: #CC3333;
+        background-color: #E63934;
     }
     100% {
         color: black;
-        background-color: #cca7ab;
+        background-color: #FFD5D4;
     }
 }
 
@@ -37,11 +37,11 @@ body {
 @keyframes blink-after-healthy {
     0% {
         color: white;
-        background-color: #137132;
+        background-color: #95D430;
     }
     100% {
         color: black;
-        background-color: #aaceb7;
+        background-color: #DDECC4;
     }
 }
 
