@@ -39,7 +39,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
 }
 
 function addSuccesTextDiv(successText) {
-    $('#lightweight-cctray-monitor').append('<div class="flex-child healthy">' +
+    $('#lightweight-cctray-monitor').append('<div class="flex-child healthy" style="height: calc(100% - 20px);">' +
     '<div class="inner-flex-child">' +
     '<div class="inner-inner-flex-child" id="success-div">' +
     '<span>' +
@@ -52,7 +52,7 @@ function addSuccesTextDiv(successText) {
 }
 
 function addFailureTextDiv(failureText) {
-    $('#lightweight-cctray-monitor').append('<div class="flex-child failed">' +
+    $('#lightweight-cctray-monitor').append('<div class="flex-child failed style="height: calc(100% - 20px);">' +
     '<div class="inner-flex-child">' +
     '<div class="inner-inner-flex-child" id="failure-div">' +
     '<span>' +
@@ -122,13 +122,10 @@ function updatePresentation(successText, cache, debug) {
         if ($(window).width() > $(window).height()) {
             closestFactors.reverse();
         }
-        $('.flex-child').css('min-width', Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) - 2 + '%');
-        $('.flex-child').css('max-width', Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) - 2 + '%');
-        $('.flex-child').css('min-height', Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) - 2 + '%');
-        $('.flex-child').css('max-height', Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) - 2 + '%');
+        $('.flex-child').css('width', 'calc(' + Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) + '% - 20px)');
+        $('.flex-child').css('height', 'calc(' + Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) + '% - 20px)');
         if(countOfBoxes % 2 != 0 && countOfBoxes != 1){
-            $('.flex-child').slice(-closestFactors[0]+1).css('min-width', Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) - 2 + '%');
-            $('.flex-child').slice(-closestFactors[0]+1).css('max-width', Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) - 2 + '%');
+            $('.flex-child').slice(-closestFactors[0]+1).css('width', 'calc(' + Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) + '% - 20px)');
         }
     }
     for(j = i; j >= 0; j--){
