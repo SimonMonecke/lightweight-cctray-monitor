@@ -114,26 +114,30 @@ function updatePresentation(successText, cache, debug) {
             countOfBoxes += 1;
         }
     }
-    if(countOfBoxes > 0) {
-        var evenCountOfBoxes = countOfBoxes;
-        if(countOfBoxes % 2 != 0 && countOfBoxes != 1){
-            evenCountOfBoxes += 1;
+    if(!debug) {
+        if (countOfBoxes > 0) {
+            var evenCountOfBoxes = countOfBoxes;
+            if (countOfBoxes % 2 != 0 && countOfBoxes != 1) {
+                evenCountOfBoxes += 1;
+            }
+            var closestFactors = getClosestFactors(evenCountOfBoxes);
+            if ($(window).width() > $(window).height()) {
+                closestFactors.reverse();
+            }
+            $('.flex-child').css('width', 'calc(' + Math.floor($(window).width() / closestFactors[0] / $(window).width() * 100.0) + '% - 20px)');
+            $('.flex-child').css('height', 'calc(' + Math.floor($(window).width() / closestFactors[1] / $(window).width() * 100.0) + '% - 20px)');
+            if (countOfBoxes % 2 != 0 && countOfBoxes != 1) {
+                $('.flex-child').slice(-closestFactors[0] + 1).css('width', 'calc(' + Math.floor($(window).width() / (closestFactors[0] - 1) / $(window).width() * 100.0) + '% - 20px)');
+            }
         }
-        var closestFactors = getClosestFactors(evenCountOfBoxes);
-        if ($(window).width() > $(window).height()) {
-            closestFactors.reverse();
+        for (j = i; j >= 0; j--) {
+            var width = $('#' + j).width();
+            var height = $('#' + j).height();
+            if ((width != null) && (height != null)) {
+                $('#' + j).textfill({innerTag: 'a', maxFontPixels: 0, minFontPixels: 2, changeLineHeight: true});
+            }
         }
-        $('.flex-child').css('width', 'calc(' + Math.floor($(window).width()/closestFactors[0]/$(window).width()*100.0) + '% - 20px)');
-        $('.flex-child').css('height', 'calc(' + Math.floor($(window).width()/closestFactors[1]/$(window).width()*100.0) + '% - 20px)');
-        if(countOfBoxes % 2 != 0 && countOfBoxes != 1){
-            $('.flex-child').slice(-closestFactors[0]+1).css('width', 'calc(' + Math.floor($(window).width()/(closestFactors[0]-1)/$(window).width()*100.0) + '% - 20px)');
-        }
-    }
-    for(j = i; j >= 0; j--){
-        var width = $('#' + j).width();
-        var height = $('#' + j).height();
-        if ((width != null) && (height != null)) {
-            $('#' + j).textfill({innerTag: 'a', maxFontPixels: 0, minFontPixels: 2, changeLineHeight: true});
-        }
+    }else{
+        $('body').css('overflow', 'scroll');
     }
 }
