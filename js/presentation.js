@@ -124,10 +124,10 @@ function updatePresentation(successText, cache, debug) {
             if ($(window).width() > $(window).height()) {
                 closestFactors.reverse();
             }
-            $('.flex-child').css('width', 'calc(' + Math.floor($(window).width() / closestFactors[0] / $(window).width() * 100.0) + '% - 20px)');
-            $('.flex-child').css('height', 'calc(' + Math.floor($(window).width() / closestFactors[1] / $(window).width() * 100.0) + '% - 20px)');
+            $('.flex-child').css('width', 'calc(' + Math.floor($(window).width() / closestFactors[0] / $(window).width() * 100.0) + '% - 4px)');
+            $('.flex-child').css('height', 'calc(' + Math.floor($(window).width() / closestFactors[1] / $(window).width() * 100.0) + '% - 4px)');
             if (countOfBoxes % 2 != 0 && countOfBoxes != 1) {
-                $('.flex-child').slice(-closestFactors[0] + 1).css('width', 'calc(' + Math.floor($(window).width() / (closestFactors[0] - 1) / $(window).width() * 100.0) + '% - 20px)');
+                $('.flex-child').slice(-closestFactors[0] + 1).css('width', 'calc(' + Math.floor($(window).width() / (closestFactors[0] - 1) / $(window).width() * 100.0) + '% - 4px)');
             }
         }
         for (j = i; j >= 0; j--) {
