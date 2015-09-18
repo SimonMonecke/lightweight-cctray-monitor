@@ -20,19 +20,21 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 ** guiUrl: URL to the UI of the pipeline in your CI tool (optional, no default)
 
 Example:
-    {
-        "successText" : ":D",
-        "autoHiddenPrefix" : "_",
-        "defaultHiddenSteps" : ["either"],
-        "pipelines" : [
-            {
-                "displayName": "Test-Pipeline",
-                "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
-                "hiddenSteps": ["either"],
-                "guiUrl": "http://localhost:8080/pipeline"
-            }
-        ]
-    }
+```json
+{
+    "successText" : ":D",
+    "autoHiddenPrefix" : "_",
+    "defaultHiddenSteps" : ["either"],
+    "pipelines" : [
+        {
+            "displayName": "Test-Pipeline",
+            "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
+            "hiddenSteps": ["either"],
+            "guiUrl": "http://localhost:8080/pipeline"
+        }
+    ]
+}
+```
 
 ## TODO
 - [x] scale font automatically
