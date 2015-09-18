@@ -1,11 +1,12 @@
 {
     "successText" : ":D",
     "autoHiddenPrefix" : "_",
+    "defaultHiddenSteps" : ["either"],
     "pipelines" : [
         {
             "displayName": "Test-Pipeline",
             "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
-            "invisibleSteps": ["either"],
+            "hiddenSteps": ["either"],
             "guiUrl": "http://localhost:8080/pipeline"
         }
     ]

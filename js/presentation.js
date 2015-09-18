@@ -39,11 +39,12 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
 }
 
 function addSuccesTextDiv(successText) {
+    var successTextWithDefault = successText || ":D";
     $('#lightweight-cctray-monitor').append('<div class="flex-child healthy" style="height: calc(100% - 20px);">' +
     '<div class="inner-flex-child">' +
     '<div class="inner-inner-flex-child" id="success-div">' +
     '<span>' +
-    successText +
+    successTextWithDefault  +
     '</span>' +
     '</div>' +
     '</div>' +
