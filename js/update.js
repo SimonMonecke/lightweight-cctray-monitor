@@ -16,7 +16,7 @@ function transformState(acitivity, lastBuildStatus) {
 }
 
 function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall) {
-    pipelines.forEach(function (pipeline) {
+    $.each(pipelines, function(pipelineName, pipeline) {
         var hiddenSteps = pipeline['hiddenSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
         var guiURL = pipeline['guiUrl'];
@@ -24,33 +24,35 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
                     type: 'GET',
                     url: cctrayUrl,
                     success: function (response) {
+                        var newProjectCache = new Array();
                         $(response).find('Project').each(function (project) {
                             var name = $(this).attr('name');
                             var activity = $(this).attr('activity');
                             var lastBuildStatus = $(this).attr('lastBuildStatus');
                             var newState = transformState(activity, lastBuildStatus);
                             var cacheEntry = [];
-                            var keyName = pipeline['displayName'] + '-' + name;
+                            //var keyName = pipeline['displayName'] + '-' + name;
                             cacheEntry['stepName'] = name;
-                            cacheEntry['pipelineName'] = pipeline['displayName'];
+                            cacheEntry['pipelineName'] = pipelineName;
                             cacheEntry['state'] = newState;
                             cacheEntry['visible'] = ($.inArray(name, hiddenSteps) == -1) &&
                                                     ($.inArray(name, defautHiddenSteps) == -1) &&
                                                     !(name.startsWith(hiddenPrefix));
                             cacheEntry['guiURL'] = guiURL;
-                            cacheEntry['timestamp'] = Math.floor(Date.now() / 1000);
-                            cache[keyName] = cacheEntry;
+                            newProjectCache.push(cacheEntry);
                         });
+                        cache[pipelineName] = newProjectCache;
                     },
                     error: function (response) {
+                        var newProjectCache = new Array();
                         var cacheEntry = [];
                         cacheEntry['stepName'] = '';
-                        cacheEntry['pipelineName'] = pipeline['displayName'];
+                        cacheEntry['pipelineName'] = pipelineName;
                         cacheEntry['state'] = 'sick';
                         cacheEntry['visible'] = true;
-                        cacheEntry['timestamp'] = Math.floor(Date.now() / 1000);
                         cacheEntry['guiURL'] = guiURL;
-                        cache[pipeline['displayName']] = cacheEntry;
+                        newProjectCache.push(cacheEntry);
+                        cache[pipelineName] = newProjectCache;
                     }
                     ,
                     dataType: 'xml',
@@ -59,16 +61,5 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
                 }
         )
         ;
-    });
-}
-
-function markUnreachablePipelines(cache) {
-    now = Math.floor(Date.now() / 1000);
-
-    Object.keys(cache).forEach(function (key) {
-        var cacheEntry = cache[key];
-        if (cacheEntry['timestamp'] < now - 10) {
-            delete cache[key];
-        }
     });
 }

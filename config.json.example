@@ -1,13 +1,20 @@
 {
-    "successText" : ":D",
-    "autoHiddenPrefix" : "_",
-    "defaultHiddenSteps" : ["either"],
-    "pipelines" : [
-        {
-            "displayName": "Test-Pipeline",
-            "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
-            "hiddenSteps": ["either"],
-            "guiUrl": "http://localhost:8080/pipeline"
-        }
-    ]
+  "successText": ":D",
+  "autoHiddenPrefix": "_",
+  "pipelines": {
+    "Test-Pipeline": {
+      "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
+      "invisibleSteps": [
+        "either"
+      ],
+      "guiUrl": "http://localhost:8080/pipeline"
+    },
+    "Test-Pipeline2": {
+      "cctrayUrl": "http://localhost:7777/cctray/pipeline.xml",
+      "invisibleSteps": [
+        "either"
+      ],
+      "guiUrl": "http://localhost:7777/pipeline"
+    }
+  }
 }

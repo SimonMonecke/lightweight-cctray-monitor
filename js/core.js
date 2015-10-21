@@ -3,13 +3,11 @@ var cache = [];
 var config = readConfig("config.json");
 
 function lightweight_cctray_monitor(){
-    updateCache(config.pipelines, config.autoHiddenPrefix, config.defaultHiddenSteps, cache, false);
-    setInterval(updateCache, 3000, config.pipelines, config.autoHiddenPrefix, config.defaultHiddenSteps, cache, true);
-
     updatePresentation(config.successText, cache, debug);
     setInterval(updatePresentation, 5000, config.successText, cache, debug);
 
-    setInterval(markUnreachablePipelines, 10000, cache);
+    updateCache(config.pipelines, config.autoHiddenPrefix, config.defaultHiddenSteps, cache, true);
+    setInterval(updateCache, 3000, config.pipelines, config.autoHiddenPrefix, config.defaultHiddenSteps, cache, true);
 }
 
-lightweight_cctray_monitor();
+window.onload = lightweight_cctray_monitor;

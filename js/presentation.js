@@ -38,7 +38,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
     }
 }
 
-function addSuccesTextDiv(successText) {
+function addSuccessTextDiv(successText) {
     var successTextWithDefault = successText || ":D";
     $('#lightweight-cctray-monitor').append('<div class="flex-child healthy" style="height: calc(100% - 20px);">' +
     '<div class="inner-flex-child">' +
@@ -88,23 +88,24 @@ function updatePresentation(successText, cache, debug) {
     $('#lightweight-cctray-monitor').empty();
     var len = Object.keys(cacheCopy).length;
     if (len == 0) {
-        addFailureTextDiv('Please add pipelines to config.js');
+        addSuccessTextDiv('Loading...');
     } else {
         var i = 0;
-        Object.keys(cacheCopy).forEach(function (key) {
-            var cacheEntry = cacheCopy[key];
-            addStateDiv(debug,
-                    cacheEntry['stepName'],
-                    cacheEntry['pipelineName'],
-                    cacheEntry['state'],
-                    cacheEntry['visible'],
-                    cacheEntry['guiURL'],
-                    i);
-            i += 1;
+        $.each(cacheCopy, function (pipelineName, pipelineEntry) {
+            $.each(pipelineEntry, function(index, step) {
+                addStateDiv(debug,
+                        step['stepName'],
+                        step['pipelineName'],
+                        step['state'],
+                        step['visible'],
+                        step['guiURL'],
+                        i);
+                i += 1;
+            });
         });
     }
     if ($('#lightweight-cctray-monitor div').length == 0) {
-        addSuccesTextDiv(successText);
+        addSuccessTextDiv(successText);
     }
     var countOfBoxes = 0;
     for(j = i; j >= 0; j--){
