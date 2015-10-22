@@ -24,13 +24,13 @@ Example:
     "successText" : ":D",
     "autoHiddenPrefix" : "_",
     "defaultHiddenSteps" : ["either"],
-    "pipelines" : [
+    "pipelines" : {
         "Test-Pipeline" : {
             "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
             "hiddenSteps": ["either"],
             "guiUrl": "http://localhost:8080/pipeline"
         }
-    ]
+    }
 }
 ```
 
