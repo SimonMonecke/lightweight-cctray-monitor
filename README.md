@@ -14,9 +14,9 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 * autoHiddenPrefix: Steps with this prefix are hidden (optional, no default)
 * defaultHiddenSteps: Vector with steps which are hidden (optional, no default)
 * pipelines : Vector with pipeline-maps (required)
-** cctrayUrl: URL of the cctray-xml document of the pipeline (required)
-** hiddenSteps: Vector with steps which are hidden in the pipeline (optional, no default)
-** guiUrl: URL to the UI of the pipeline in your CI tool (optional, no default)
+  * cctrayUrl: URL of the cctray-xml document of the pipeline (required)
+  * hiddenSteps: Vector with steps which are hidden in the pipeline (optional, no default)
+  * guiUrl: URL to the UI of the pipeline in your CI tool (optional, no default)
 
 Example:
 ```json
