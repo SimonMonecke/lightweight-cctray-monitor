@@ -4,14 +4,14 @@
   "pipelines": {
     "Test-Pipeline": {
       "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
-      "invisibleSteps": [
+      "hiddenSteps": [
         "either"
       ],
       "guiUrl": "http://localhost:8080/pipeline"
     },
     "Test-Pipeline2": {
       "cctrayUrl": "http://localhost:7777/cctray/pipeline.xml",
-      "invisibleSteps": [
+      "hiddenSteps": [
         "either"
       ],
       "guiUrl": "http://localhost:7777/pipeline"
