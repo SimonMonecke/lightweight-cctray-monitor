@@ -4,6 +4,8 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
             stateCSS = 'unmonitored-step'
         } else if (state == 'sick') {
             stateCSS = 'failed';
+        } else if (state == 'waiting') {
+            stateCSS = 'waiting';
         } else if (state == 'healthy-building') {
             stateCSS = 'running-after-healthy';
         } else if (state == 'sick-building') {
