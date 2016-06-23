@@ -14,19 +14,6 @@ body {
     color: #0A0E05;
 }
 
-@keyframes blink-while-waiting {
-    0% {
-        background-color: #e3e527;
-    }
-    100% {
-        background-color: #e5e298;
-    }
-}
-
-.waiting {
-    animation: blink-while-waiting 1s linear infinite;
-}
-
 .failed {
     background-color: #E63934;
     color: #0D0505;

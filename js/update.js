@@ -1,17 +1,15 @@
-function transformState(activity, lastBuildStatus) {
+function transformState(acitivity, lastBuildStatus) {
     var state = '';
     if (lastBuildStatus == 'Success') {
         state = 'healthy';
     } else if (lastBuildStatus == 'Failure') {
         state = 'sick';
-    } else if (lastBuildStatus == 'Sleeping') {
-        state = 'waiting';
     } else if (lastBuildStatus == 'Unknown') {
         state = 'unknown';
     }
-    if ((state == 'unknown') && activity == "Building") {
+    if ((state == 'unknown') && acitivity == "Building") {
         state = 'healthy-building';
-    } else if ((state != 'unknown') && activity == "Building") {
+    } else if ((state != 'unknown') && acitivity == "Building") {
         state = state + '-building';
     }
     return state;
@@ -22,7 +20,6 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
         var hiddenSteps = pipeline['hiddenSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
         var guiURL = pipeline['guiUrl'];
-        var guiURL = pipeline['visibleWaitingSteps'];
         $.ajax({
                     type: 'GET',
                     url: cctrayUrl,
@@ -40,8 +37,7 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
                             cacheEntry['state'] = newState;
                             cacheEntry['visible'] = ($.inArray(name, hiddenSteps) == -1) &&
                                                     ($.inArray(name, defautHiddenSteps) == -1) &&
-                                                    !(name.startsWith(hiddenPrefix)) &&
-                                                    ($.inArray(name, visibleWaitingSteps) != -1);
+                                                    !(name.startsWith(hiddenPrefix));
                             cacheEntry['guiURL'] = guiURL;
                             newProjectCache.push(cacheEntry);
                         });
