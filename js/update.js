@@ -22,7 +22,7 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
         var hiddenSteps = pipeline['hiddenSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
         var guiURL = pipeline['guiUrl'];
-        var guiURL = pipeline['visibleWaitingSteps'];
+        var visibleWaitingSteps = pipeline['visibleWaitingSteps'];
         $.ajax({
                     type: 'GET',
                     url: cctrayUrl,
