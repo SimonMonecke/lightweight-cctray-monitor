@@ -41,7 +41,7 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
                             cacheEntry['visible'] = ($.inArray(name, hiddenSteps) == -1) &&
                                                     ($.inArray(name, defautHiddenSteps) == -1) &&
                                                     !(name.startsWith(hiddenPrefix)) &&
-                                                    ($.inArray(name, visibleWaitingSteps) != -1);
+                                                    ((newState !== 'waiting') || ($.inArray(name, visibleWaitingSteps) != -1));
                             cacheEntry['guiURL'] = guiURL;
                             newProjectCache.push(cacheEntry);
                         });
