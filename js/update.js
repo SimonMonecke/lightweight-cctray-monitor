@@ -4,7 +4,7 @@ function transformState(activity, lastBuildStatus) {
         state = 'healthy';
     } else if (lastBuildStatus == 'Failure') {
         state = 'sick';
-    } else if (lastBuildStatus == 'Sleeping') {
+    } else if (activity == 'Sleeping') {
         state = 'waiting';
     } else if (lastBuildStatus == 'Unknown') {
         state = 'unknown';
