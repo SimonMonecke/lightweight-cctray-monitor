@@ -4,8 +4,6 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
             stateCSS = 'unmonitored-step'
         } else if (state == 'sick') {
             stateCSS = 'failed';
-        } else if (state == 'waiting') {
-            stateCSS = 'waiting';
         } else if (state == 'healthy-building') {
             stateCSS = 'running-after-healthy';
         } else if (state == 'sick-building') {
@@ -24,17 +22,17 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
                 stepName = stepName + "<br/>";//<br/>"
             }
             $('#lightweight-cctray-monitor').append(
-                    '<div class="flex-child ' + stateCSS + '">' +
-                    '<div class="inner-flex-child">' +
-                    '<div class="inner-inner-flex-child" id="' + id + '">' +
-                    '<a  style="white-space: nowrap;" href="' + guiURL + '" target="_blank">' +
-                    stepName +
-                    stateAsSpan +
-                    pipelineName +
-                    '</a>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
+                '<div class="flex-child ' + stateCSS + '">' +
+                '<div class="inner-flex-child">' +
+                '<div class="inner-inner-flex-child" id="' + id + '">' +
+                '<a  style="white-space: nowrap;" href="' + guiURL + '" target="_blank">' +
+                stepName +
+                stateAsSpan +
+                pipelineName +
+                '</a>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
             );
         }
     }
@@ -43,42 +41,42 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
 function addSuccessTextDiv(successText) {
     var successTextWithDefault = successText || ":D";
     $('#lightweight-cctray-monitor').append('<div class="flex-child healthy" style="height: calc(100% - 20px);">' +
-    '<div class="inner-flex-child">' +
-    '<div class="inner-inner-flex-child" id="success-div">' +
-    '<span>' +
-    successTextWithDefault  +
-    '</span>' +
-    '</div>' +
-    '</div>' +
-    '</div>');
+        '<div class="inner-flex-child">' +
+        '<div class="inner-inner-flex-child" id="success-div">' +
+        '<span>' +
+        successTextWithDefault +
+        '</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>');
     $('#success-div').textfill({innerTag: 'span', maxFontPixels: 0, minFontPixels: 2});
 }
 
 function addFailureTextDiv(failureText) {
     $('#lightweight-cctray-monitor').append('<div class="flex-child failed style="height: calc(100% - 20px);">' +
-    '<div class="inner-flex-child">' +
-    '<div class="inner-inner-flex-child" id="failure-div">' +
-    '<span>' +
-    failureText +
-    '</span>' +
-    '</div>' +
-    '</div>' +
-    '</div>');
+        '<div class="inner-flex-child">' +
+        '<div class="inner-inner-flex-child" id="failure-div">' +
+        '<span>' +
+        failureText +
+        '</span>' +
+        '</div>' +
+        '</div>' +
+        '</div>');
     $('#failure-div').textfill({innerTag: 'span', maxFontPixels: 0, minFontPixels: 2});
 }
 
-(function($) {
-    $.fn.textfill2 = function(maxFontSize) {
+(function ($) {
+    $.fn.textfill2 = function (maxFontSize) {
         maxFontSize = 0;
-        return this.each(function(){
+        return this.each(function () {
             var ourText = $("a", this),
                 parent = ourText.parent(),
                 maxHeight = parent.height(),
                 maxWidth = parent.width(),
                 fontSize = parseInt(ourText.css("fontSize"), 10),
-                multiplier = maxWidth/ourText.width(),
-                multiplier2 = maxHeight/ourText.height(),
-                newSize = (fontSize*(Math.min(multiplier, multiplier2) -0.1));
+                multiplier = maxWidth / ourText.width(),
+                multiplier2 = maxHeight / ourText.height(),
+                newSize = (fontSize * (Math.min(multiplier, multiplier2) - 0.1));
             ourText.css("fontSize", newSize);
             ourText.css("lineHeight", ourText.height());
         });
@@ -94,14 +92,14 @@ function updatePresentation(successText, cache, debug) {
     } else {
         var i = 0;
         $.each(cacheCopy, function (pipelineName, pipelineEntry) {
-            $.each(pipelineEntry, function(index, step) {
+            $.each(pipelineEntry, function (index, step) {
                 addStateDiv(debug,
-                        step['stepName'],
-                        step['pipelineName'],
-                        step['state'],
-                        step['visible'],
-                        step['guiURL'],
-                        i);
+                    step['stepName'],
+                    step['pipelineName'],
+                    step['state'],
+                    step['visible'],
+                    step['guiURL'],
+                    i);
                 i += 1;
             });
         });
@@ -110,14 +108,14 @@ function updatePresentation(successText, cache, debug) {
         addSuccessTextDiv(successText);
     }
     var countOfBoxes = 0;
-    for(j = i; j >= 0; j--){
+    for (j = i; j >= 0; j--) {
         var width = $('#' + j).width();
         var height = $('#' + j).height();
         if ((width != null) && (height != null)) {
             countOfBoxes += 1;
         }
     }
-    if(!debug) {
+    if (!debug) {
         if (countOfBoxes > 0) {
             var evenCountOfBoxes = countOfBoxes;
             if (countOfBoxes % 2 != 0 && countOfBoxes != 1) {
@@ -140,7 +138,7 @@ function updatePresentation(successText, cache, debug) {
                 $('#' + j).textfill({innerTag: 'a', maxFontPixels: 0, minFontPixels: 2, changeLineHeight: true});
             }
         }
-    }else{
+    } else {
         $('body').css('overflow', 'scroll');
     }
 }
