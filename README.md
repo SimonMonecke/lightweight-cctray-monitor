@@ -11,7 +11,7 @@ A small JavaScript tool to visualize cctray.xml files provided by any continuous
 ### Configuration
 
 * successText: Text which is visible if no step is running or failed (optional, default: ":D")
-* autoHiddenPrefix: Steps with this prefix are hidden (optional, no default)
+* autoHiddenRegex: Steps matching this regex are hidden (optional, no default)
 * defaultHiddenSteps: Vector with steps which are hidden (optional, no default)
 * pipelines : Vector with pipeline-maps (required)
   * cctrayUrl: URL of the cctray-xml document of the pipeline (required)
@@ -22,7 +22,7 @@ Example:
 ```json
 {
     "successText" : ":D",
-    "autoHiddenPrefix" : "_",
+    "autoHiddenRegex" : "^_",
     "defaultHiddenSteps" : ["either"],
     "pipelines" : {
         "Test-Pipeline" : {

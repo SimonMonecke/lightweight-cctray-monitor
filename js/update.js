@@ -15,7 +15,7 @@ function transformState(activity, lastBuildStatus) {
     return state;
 }
 
-function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall) {
+function updateCache(pipelines, autoHiddenRegexCompiled, defautHiddenSteps, cache, asynCall) {
     $.each(pipelines, function (pipelineName, pipeline) {
         var hiddenSteps = pipeline['hiddenSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
@@ -37,7 +37,7 @@ function updateCache(pipelines, hiddenPrefix, defautHiddenSteps, cache, asynCall
                         cacheEntry['pipelineName'] = pipelineName;
                         cacheEntry['state'] = newState;
                         cacheEntry['visible'] = ($.inArray(name, hiddenSteps) == -1) &&
-                            ($.inArray(name, defautHiddenSteps) == -1) && !(name.startsWith(hiddenPrefix));
+                            ($.inArray(name, defautHiddenSteps) == -1) && (!autoHiddenRegexCompiled || !autoHiddenRegexCompiled.test(name));
                         cacheEntry['guiURL'] = guiURL;
                         newProjectCache.push(cacheEntry);
                     });

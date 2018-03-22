@@ -1,6 +1,6 @@
 {
   "successText": ":D",
-  "autoHiddenPrefix": "_",
+  "autoHiddenRegex": "^_",
   "pipelines": {
     "Test-Pipeline": {
       "cctrayUrl": "http://localhost:8080/cctray/pipeline.xml",
