@@ -28,7 +28,7 @@ function addStateDiv(debug, stepName, pipelineName, state, visible, guiURL, id) 
                 '<a  style="white-space: nowrap;" href="' + guiURL + '" target="_blank">' +
                 stepName +
                 stateAsSpan +
-                pipelineName +
+                '<b>' + pipelineName + '</b>' +
                 '</a>' +
                 '</div>' +
                 '</div>' +

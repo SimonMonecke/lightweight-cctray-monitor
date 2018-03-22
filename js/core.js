@@ -7,8 +7,9 @@ function lightweight_cctray_monitor(){
     setInterval(updatePresentation, 5000, config.successText, cache, debug);
 
     var autoHiddenRegexCompiled = config.autoHiddenRegex !== undefined && config.autoHiddenRegex !== "" ? new RegExp(config.autoHiddenRegex) : null;
-    updateCache(config.pipelines, autoHiddenRegexCompiled, config.splitLineSeq, config.defaultHiddenSteps, cache, true);
-    setInterval(updateCache, 3000, config.pipelines, autoHiddenRegexCompiled, config.splitLineSeq, config.defaultHiddenSteps, cache, true);
+    var splitLineSeqCompiled = config.splitLineSeq !== undefined && config.splitLineSeq !== "" ? new RegExp(config.splitLineSeq, "g") : null;
+    updateCache(config.pipelines, autoHiddenRegexCompiled, splitLineSeqCompiled, config.defaultHiddenSteps, cache, true);
+    setInterval(updateCache, 3000, config.pipelines, autoHiddenRegexCompiled, splitLineSeqCompiled, config.defaultHiddenSteps, cache, true);
 }
 
 window.onload = lightweight_cctray_monitor;

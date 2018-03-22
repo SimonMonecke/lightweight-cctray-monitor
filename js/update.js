@@ -15,7 +15,7 @@ function transformState(activity, lastBuildStatus) {
     return state;
 }
 
-function updateCache(pipelines, autoHiddenRegexCompiled, splitLineSeq, defautHiddenSteps, cache, asynCall) {
+function updateCache(pipelines, autoHiddenRegexCompiled, splitLineSeqCompiled, defautHiddenSteps, cache, asynCall) {
     $.each(pipelines, function (pipelineName, pipeline) {
         var hiddenSteps = pipeline['hiddenSteps'];
         var cctrayUrl = pipeline['cctrayUrl'];
@@ -33,7 +33,7 @@ function updateCache(pipelines, autoHiddenRegexCompiled, splitLineSeq, defautHid
                         var newState = transformState(activity, lastBuildStatus);
                         var cacheEntry = [];
                         //var keyName = pipeline['displayName'] + '-' + name;
-                        cacheEntry['stepName'] = splitLineSeq ? name.replace(splitLineSeq, "<br/>") : name;
+                        cacheEntry['stepName'] = splitLineSeqCompiled ? name.replace(splitLineSeqCompiled, "<br/>") : name;
                         cacheEntry['pipelineName'] = pipelineName;
                         cacheEntry['state'] = newState;
                         cacheEntry['visible'] = ($.inArray(name, hiddenSteps) == -1) &&
